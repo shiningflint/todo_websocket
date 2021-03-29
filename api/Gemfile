@@ -1,0 +1,12 @@
+source "https://rubygems.org"
+
+ruby "2.5.8"
+
+gem "sinatra", require: "sinatra/base"
+gem "sinatra-contrib", require: false
+
+# web server
+gem "puma"
+
+# websocket gem
+gem "litecable"

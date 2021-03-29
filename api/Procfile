@@ -1,0 +1,1 @@
+web:  CABLE_URL=ws://localhost:9293/cable rackup config.ru

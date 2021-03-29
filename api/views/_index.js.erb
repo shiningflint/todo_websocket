@@ -1,0 +1,12 @@
+var todoForm = document.getElementById("todo_form");
+var todoInput = document.getElementById("todo_input");
+var socketId = Date.now();
+
+todoForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log("submitting form", todoInput.value);
+  todoInput.value = null;
+}, false)
+
+ActionCable.startDebugging();
+var cable = ActionCable.createConsumer('<%= CABLE_URL %>?sid=' + socketId);
