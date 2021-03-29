@@ -10,3 +10,4 @@ gem "puma"
 
 # websocket gem
 gem "litecable"
+gem "websocket"

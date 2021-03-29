@@ -28,6 +28,7 @@ GEM
       sinatra (= 2.1.0)
       tilt (~> 2.0)
     tilt (2.0.10)
+    websocket (1.2.9)
 
 PLATFORMS
   ruby
@@ -37,6 +38,7 @@ DEPENDENCIES
   puma
   sinatra
   sinatra-contrib
+  websocket
 
 RUBY VERSION
    ruby 2.5.8p224
