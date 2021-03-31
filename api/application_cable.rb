@@ -11,23 +11,17 @@ module ApplicationCable
     end
   end
 
-  class Channel < LiteCable::Channel::Base # :nodoc:
-    # identifier :chat
+  class MumulalaTodo < LiteCable::Channel::Base # :nodoc:
+    identifier :mumulala_todo
 
-    # def subscribed
-    #   reject unless chat_id
-    #   stream_from "chat_#{chat_id}"
-    # end
+    def subscribed
+      stream_from "mumulala_todo"
+    end
 
-    # def speak(data)
-    #   LiteCable.broadcast "chat_#{chat_id}", user: user, message: data["message"], sid: sid
-    # end
-
-    # private
-
-    # def chat_id
-    #   params.fetch("id")
-    # end
+    def add_todo(payload)
+      $stdout.puts "Data received from client: #{payload}"
+      LiteCable.broadcast "mumulala_todo", result: payload['content']
+    end
   end
 
 end

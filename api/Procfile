@@ -1,1 +1,1 @@
-web:  CABLE_URL=ws://localhost:9293/cable LITECABLE_BROADCAST_ADAPTER=memory bundle exec puma
+web:  CABLE_URL=ws://localhost:9293/cable bundle exec puma
