@@ -19,8 +19,9 @@ module ApplicationCable
     end
 
     def add_todo(payload)
+      Todo.insert(name: payload["content"])
       $stdout.puts "Data received from client: #{payload}"
-      LiteCable.broadcast "mumulala_todo", result: payload['content']
+      LiteCable.broadcast "mumulala_todo", result: payload["content"]
     end
   end
 

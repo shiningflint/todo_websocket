@@ -6,6 +6,7 @@ class App < Sinatra::Application
   set :public_folder, "assets"
 
   get "/" do
+    @todos = Todo.all
     erb :index
   end
 

@@ -1,6 +1,7 @@
 # CONFIG
+require_relative "./models"
 require_relative "./app"
-require_relative "./application_cable.rb"
+require_relative "./application_cable"
 
 LiteCable.config.log_level = Logger::DEBUG
 # END CONFIG

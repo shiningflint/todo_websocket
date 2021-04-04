@@ -16,6 +16,7 @@ GEM
       rack
     ruby-next-core (0.12.0)
     ruby2_keywords (0.0.4)
+    sequel (5.43.0)
     sinatra (2.1.0)
       mustermann (~> 1.0)
       rack (~> 2.2)
@@ -27,6 +28,7 @@ GEM
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
+    sqlite3 (1.4.2)
     tilt (2.0.10)
     websocket (1.2.9)
 
@@ -36,8 +38,10 @@ PLATFORMS
 DEPENDENCIES
   litecable
   puma
+  sequel
   sinatra
   sinatra-contrib
+  sqlite3
   websocket
 
 RUBY VERSION
