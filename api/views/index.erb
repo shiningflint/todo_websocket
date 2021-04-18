@@ -1,17 +1,12 @@
 <div>a whole new world</div>
+
 <ul>
-  <% @todos.each do |todo| %>
-    <li>
-      <span><%= todo.name %></span>
-      <span><%= todo.done ? "✔️" : "𝗑" %></span>
-    </li>
-  <% end %>
+  <%= erb :index_items, locals: { todos: @todos } %>
 </ul>
+
 <form id="todo_form">
   <input id="todo_input" type="text" value="" />
   <button type="submit">Create Todo</button>
 </form>
 
-<script type="text/javascript">
-  <%= erb :"_index.js" %>
-</script>
+<script type="text/javascript" src="/public/javascripts/application.js"></script>

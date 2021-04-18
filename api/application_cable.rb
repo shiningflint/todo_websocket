@@ -20,8 +20,10 @@ module ApplicationCable
 
     def add_todo(payload)
       Todo.insert(name: payload["content"])
+      todos = Todo.all
       $stdout.puts "Data received from client: #{payload}"
       LiteCable.broadcast "mumulala_todo", result: payload["content"]
+      # LiteCable.broadcast "mumulala_todo", result: ( erb :index_items, locals: { todos: todos } )
     end
   end
 

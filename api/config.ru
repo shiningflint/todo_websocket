@@ -6,6 +6,8 @@ require_relative "./application_cable"
 LiteCable.config.log_level = Logger::DEBUG
 # END CONFIG
 
+use Rack::Static, :urls => [ "/public" ]
+
 app = Rack::Builder.new do
   map "/" do
     run App
