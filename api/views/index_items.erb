@@ -1,6 +1,8 @@
 <% todos.each do |todo| %>
+  <% done_style = todo.done ? "text-decoration: line-through;" : "" %>
   <li>
-    <span><%= todo.name %></span>
-    <span><%= todo.done ? "✔️" : "𝗑" %></span>
+    <span style="<%= done_style %>"><%= todo.name %></span>
+    <span class="delete" data-id="<%= todo.id %>"><%= "x" %></span>
+    <button class="done" type="button" data-id="<%= todo.id %>">Done</button>
   </li>
 <% end %>

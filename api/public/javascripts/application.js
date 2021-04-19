@@ -15,8 +15,11 @@
       this.socket.onmessage = (e) => {
         const data = JSON.parse(e.data)
 
-        if (data.type !== "ping") {
-          console.log("[message] : Message from the server", data);
+        if (data.type === "ping") return
+
+        console.log("[message] : Message from the server", data);
+        if (data.message && data.message.result) {
+          TodoList.updateList(data.message.result)
         }
       };
 
@@ -49,7 +52,7 @@
         })
       );
     },
-  }
+  };
 
   const Form = {
     // Data
@@ -60,17 +63,44 @@
     init: function () {
       this.form = document.getElementById("todo_form")
       this.todoInput = document.getElementById("todo_input")
-      this.form.addEventListener("submit", (e) => { this.onFormSubmit(e) }, false);
+      this.form.addEventListener("submit", (e) => { this.onFormSubmit(e) }, false)
     },
     onFormSubmit: function (e) {
-      e.preventDefault();
-      AppSocket.sendMessage(this.todoInput.value, "add_todo");
-      this.todoInput.value = "";
+      e.preventDefault()
+      AppSocket.sendMessage(this.todoInput.value, "add_todo")
+      this.todoInput.value = ""
+    },
+  };
+
+  const TodoList = {
+    // Data
+    todoList: null,
+
+    // Methods
+    init: function () {
+      this.todoList = document.getElementById("todo_list")
+      this.todoList.addEventListener("click", this.onTodoListClick, false)
+    },
+    updateList: function (newList) {
+      this.todoList.innerHTML = newList
+    },
+    onTodoListClick: function (e) {
+      console.log("clicked an item: ", e.target.classList)
+      if (e.target.classList.contains("delete")) {
+        const itemId = e.target.dataset.id
+        AppSocket.sendMessage(itemId, "delete_todo")
+      }
+
+      if (e.target.classList.contains("done")) {
+        const itemId = e.target.dataset.id
+        AppSocket.sendMessage(itemId, "toggle_done")
+      }
     },
   };
 
   document.addEventListener("DOMContentLoaded", () => {
     AppSocket.init()
+    TodoList.init()
     Form.init()
   })
 })()

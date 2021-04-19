@@ -1,7 +1,7 @@
 <div>a whole new world</div>
 
-<ul>
-  <%= erb :index_items, locals: { todos: @todos } %>
+<ul id="todo_list">
+  <%= render :index_items, locals: { todos: @todos } %>
 </ul>
 
 <form id="todo_form">

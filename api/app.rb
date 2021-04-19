@@ -1,17 +1,15 @@
-require "sinatra"
+require "roda"
+require "tilt"
 
 CABLE_URL = ENV.fetch("CABLE_URL", "/cable")
 
-class App < Sinatra::Application
-  set :public_folder, "assets"
+class App < Roda
+  plugin :render
 
-  get "/" do
-    @todos = Todo.all
-    erb :index
-  end
-
-  not_found do
-    content_type :json
-    { status: 404, message: "Resource not found." }.to_json
+  route do |r|
+    r.root do
+      @todos = Todo.all
+      view :index
+    end
   end
 end
