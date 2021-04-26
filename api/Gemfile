@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.5.8"
+ruby "2.7.3"
 
 gem "roda", ">= 3.43"
 gem "tilt", ">= 2.0"

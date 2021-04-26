@@ -6,7 +6,7 @@
 
     // Methods
     init: function () {
-      this.socket = new WebSocket("ws://0.0.0.0:9292/cable");
+      this.socket = new WebSocket("ws://localhost:9292/cable");
       this.socket.onopen = (e) => {
         console.info("[connected] : Connection established to the server");
         this.subscribeToChannel();
@@ -17,14 +17,14 @@
 
         if (data.type === "ping") return
 
-        console.log("[message] : Message from the server", data);
+        // console.log("[message] : Message from the server", data);
         if (data.message && data.message.result) {
           TodoList.updateList(data.message.result)
         }
       };
 
       this.socket.onerror = (e) => {
-        console.error("[error] : Error establishing connection", e.message);
+        console.error("[error] : Error establishing connection", e);
       };
     },
     subscribeToChannel: function () {
@@ -38,7 +38,6 @@
       );
     },
     sendMessage: function (message, action) {
-      console.log("sending message", message, action, this);
       this.socket.send(
         JSON.stringify({
           command: "message",
@@ -85,7 +84,6 @@
       this.todoList.innerHTML = newList
     },
     onTodoListClick: function (e) {
-      console.log("clicked an item: ", e.target.classList)
       if (e.target.classList.contains("delete")) {
         const itemId = e.target.dataset.id
         AppSocket.sendMessage(itemId, "delete_todo")

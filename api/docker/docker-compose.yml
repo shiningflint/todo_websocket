@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build:
+      # Set context here is for your docker build. Which means for Dockerfile
+      # The context is relative to THIS docker-compose file
+      # It doesn't matter where you run this file with the -f option
+      context: ../
+      dockerfile: ./docker/app/Dockerfile
+    restart: always
+    # Volumes is also relative to THIS docker-compose file
+    # It has nothing to do with the setted context
+    # Hence why context is under "build"
+    volumes:
+      - ../mumulala.db:/app/mumulala.db
+    ports:
+      - "9292:9292"
+    command: ash -c "bundle exec puma"
